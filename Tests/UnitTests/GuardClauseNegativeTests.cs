@@ -1,6 +1,6 @@
 ﻿namespace UnitTests;
 
-public class GuadClauseNegativeTests
+public class GuardClauseNegativeTests
 {
     [Fact]
     public void NegativeShortSuccess()
