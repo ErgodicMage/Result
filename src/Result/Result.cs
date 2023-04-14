@@ -19,14 +19,14 @@ public readonly partial record struct Result
     public Result(bool success, string errorMessage, Exception? ex = default)
     {
         Success = success;
-        ErrorMessage = string.IsNullOrEmpty(errorMessage) && ex is not null ? ex.Message : string.Empty; ;
+        ErrorMessage = string.IsNullOrEmpty(errorMessage) && ex is not null ? ex.Message : errorMessage;
         Exception = ex;
     }
 
     public Result(string errorMessage, Exception? ex = default)
     {
         Success = false;
-        ErrorMessage = string.IsNullOrEmpty(errorMessage) && ex is not null ? ex.Message : string.Empty;
+        ErrorMessage = string.IsNullOrEmpty(errorMessage) && ex is not null ? ex.Message : errorMessage;
         Exception = ex;
     }
 

@@ -21,7 +21,7 @@ public readonly partial record struct Result<T>
     { 
         Success = success;
         Value = default!;
-        ErrorMessage = string.IsNullOrEmpty(errorMessage) && ex is not null ? ex.Message : string.Empty; 
+        ErrorMessage = string.IsNullOrEmpty(errorMessage) && ex is not null ? ex.Message : errorMessage; 
         Exception = ex;
     }
 
@@ -29,7 +29,7 @@ public readonly partial record struct Result<T>
     {
         Success = false;
         Value = default!;
-        ErrorMessage = string.IsNullOrEmpty(errorMessage) && ex is not null ? ex.Message : string.Empty;
+        ErrorMessage = string.IsNullOrEmpty(errorMessage) && ex is not null ? ex.Message : errorMessage;
         Exception = ex;
     }
 
