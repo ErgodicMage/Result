@@ -66,22 +66,6 @@ public readonly partial record struct Result
         }
     }
 
-    public static Result Try<P>(Func<P, bool> func, P param)
-    {
-        Result result = GuardClause.Null(func);
-        if (!result.Success) return result;
-
-        try
-        {
-            bool retResult = func(param);
-            return retResult ? Result.Ok() : Result.Error(string.Empty);
-        }
-        catch (Exception ex)
-        {
-            return Result.Error(ex);
-        }
-    }
-
     public static Result Try<P>(Func<P, Result> func, P param)
     {
         Result result = GuardClause.Null(func);
@@ -90,22 +74,6 @@ public readonly partial record struct Result
         try
         {
             return func(param);
-        }
-        catch (Exception ex)
-        {
-            return Result.Error(ex);
-        }
-    }
-
-    public static Result Try<P1, P2>(Func<P1, P2, bool> func, P1 param1, P2 param2)
-    {
-        Result result = GuardClause.Null(func);
-        if (!result.Success) return result;
-
-        try
-        {
-            bool retResult = func(param1, param2);
-            return retResult ? Result.Ok() : Result.Error(string.Empty);
         }
         catch (Exception ex)
         {
@@ -194,23 +162,6 @@ public readonly partial record struct Result
         }
     }
 
-    public async static Task<Result> TryAsync<P>(Func<P, CancellationToken, Task<bool>> func, 
-        P param, CancellationToken token = default)
-    {
-        Result result = GuardClause.Null(func);
-        if (!result.Success) return result;
-
-        try
-        {
-            bool retResult = await func(param, token);
-            return retResult ? Result.Ok() : Result.Error(string.Empty);
-        }
-        catch (Exception ex)
-        {
-            return Result.Error(ex);
-        }
-    }
-
     public async static Task<Result> TryAsync<P>(Func<P, CancellationToken, Task<Result>> func, 
         P param, CancellationToken token = default)
     {
@@ -220,23 +171,6 @@ public readonly partial record struct Result
         try
         {
             return await func(param, token);
-        }
-        catch (Exception ex)
-        {
-            return Result.Error(ex);
-        }
-    }
-
-    public async static Task<Result> TryAsync<P1, P2>(Func<P1, P2, CancellationToken, Task<bool>> func, 
-        P1 param1, P2 param2, CancellationToken token = default)
-    {
-        Result result = GuardClause.Null(func);
-        if (!result.Success) return result;
-
-        try
-        {
-            bool retResult = await func(param1, param2, token);
-            return retResult ? Result.Ok() : Result.Error(string.Empty);
         }
         catch (Exception ex)
         {

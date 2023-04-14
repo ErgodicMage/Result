@@ -33,4 +33,7 @@ public readonly partial record struct Result
     public static Result Ok() => new(true);
     public static Result Error(string errorMessage, Exception? ex = default) => new(errorMessage, ex);
     public static Result Error(Exception ex, string? errorMessage = "") => new(errorMessage, ex);
+
+    public static implicit operator Result(bool b) => new Result(b);
+    public static implicit operator bool(Result b) => b.Success;
 }
