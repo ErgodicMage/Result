@@ -12,7 +12,7 @@ public static partial class GuardClause
         string msg = message ?? "Value can not be negative";
         Exception ex = new ArgumentException(msg, parameterName);
 
-        return new Result(msg, ex);
+        return Result.Error(msg, ex);
     }
 
     public static Result Negative<T>(this Result result, T input, [CallerArgumentExpression("input")] string? parameterName = null,
@@ -27,7 +27,7 @@ public static partial class GuardClause
         string msg = message ?? "Value is not positive";
         Exception ex = new ArgumentException(msg, parameterName);
 
-        return new Result(msg, ex);
+        return Result.Error(msg, ex);
     }
 
     public static Result NegativeOrZero<T>(this Result result, T input, [CallerArgumentExpression("input")] string? parameterName = null,

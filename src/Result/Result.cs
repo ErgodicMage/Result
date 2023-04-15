@@ -1,39 +1,21 @@
-﻿using System;
-using System.Reflection.Metadata;
+﻿namespace ErgodicMage.Result;
 
-namespace ErgodicMage.Result;
-
-public readonly partial record struct Result
+public readonly partial record struct Result (bool Success, string ErrorMessage, Exception? Exception)
 {
-    public bool Success { get; init;  }
-    public string ErrorMessage { get; init;  }
-    public Exception? Exception { get; init; }
+    public static Result Ok() => new() { Success = true };
+    public static Result Error(string errorMessage, Exception? ex = default) => new() 
+        { 
+            Success = false, 
+            ErrorMessage = string.IsNullOrEmpty(errorMessage) && ex is not null ? ex.Message : errorMessage, 
+            Exception = ex 
+        };
+    public static Result Error(Exception ex, string? errorMessage = "") => new() 
+        { 
+            Success = false, 
+            ErrorMessage = string.IsNullOrEmpty(errorMessage) && ex is not null ? ex.Message : errorMessage, 
+            Exception = ex 
+        };
 
-    public Result(bool success)
-    {
-        Success = success;
-        ErrorMessage = string.Empty;
-        Exception = default;
-    }
-
-    public Result(bool success, string errorMessage, Exception? ex = default)
-    {
-        Success = success;
-        ErrorMessage = string.IsNullOrEmpty(errorMessage) && ex is not null ? ex.Message : errorMessage;
-        Exception = ex;
-    }
-
-    public Result(string errorMessage, Exception? ex = default)
-    {
-        Success = false;
-        ErrorMessage = string.IsNullOrEmpty(errorMessage) && ex is not null ? ex.Message : errorMessage;
-        Exception = ex;
-    }
-
-    public static Result Ok() => new(true);
-    public static Result Error(string errorMessage, Exception? ex = default) => new(errorMessage, ex);
-    public static Result Error(Exception ex, string? errorMessage = "") => new(errorMessage, ex);
-
-    public static implicit operator Result(bool b) => new Result(b);
+    public static implicit operator Result(bool b) => new() { Success = b };
     public static implicit operator bool(Result b) => b.Success;
 }

@@ -13,7 +13,7 @@ public static partial class GuardClause
         Exception ex = new ArgumentNullException(parameterName, message);
         string msg = message ?? ex.Message;
 
-        return new Result(msg, ex);
+        return Result.Error(msg, ex);
     }
 
     public static Result Null(this Result result, object? input, [CallerArgumentExpression("input")] string? parameterName = null, 
@@ -28,7 +28,7 @@ public static partial class GuardClause
         Exception ex = new ArgumentNullException(parameterName, message);
         string msg = message ?? ex.Message;
 
-        return new Result(msg, ex);
+        return Result.Error(msg, ex);
     }
 
     public static Result NullOrEmpty(this Result result, string? input, [CallerArgumentExpression("input")] string? parameterName = null,
@@ -43,7 +43,7 @@ public static partial class GuardClause
         Exception ex = new ArgumentNullException(parameterName, message);
         string msg = message ?? ex.Message;
 
-        return new Result(msg, ex);
+        return Result.Error(msg, ex);
     }
 
     public static Result NullOrWhiteSpace(this Result result, string? input, 
