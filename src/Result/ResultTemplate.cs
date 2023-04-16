@@ -10,7 +10,7 @@ public readonly partial record struct Result<T>
             ErrorMessage = string.IsNullOrEmpty(result.ErrorMessage) && result.Exception is not null ? result.Exception.Message : result.ErrorMessage, 
             Exception = result.Exception 
         };
-    public static implicit operator Result<T>(T value) => new() { Success = true, Value = value };
+    public static implicit operator Result<T>(T value) => new() { Success = value is not null, Value = value };
     public static implicit operator Result(Result<T> result) => new()
         { 
             Success = result.Success, 
