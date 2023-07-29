@@ -9,7 +9,7 @@ public readonly partial record struct Result (bool Success, string ErrorMessage,
             ErrorMessage = string.IsNullOrEmpty(errorMessage) && ex is not null ? ex.Message : errorMessage, 
             Exception = ex 
         };
-    public static Result Error(Exception ex, string? errorMessage = "") => new() 
+    public static Result Error(Exception ex, string errorMessage = "") => new() 
         { 
             Success = false, 
             ErrorMessage = string.IsNullOrEmpty(errorMessage) && ex is not null ? ex.Message : errorMessage, 
