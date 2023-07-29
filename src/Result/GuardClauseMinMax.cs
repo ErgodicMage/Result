@@ -10,8 +10,8 @@ public static partial class GuardClause
         [CallerArgumentExpression("input")] string? parameterName = null, string? message = null) where T : struct, IComparable
     {
         if (input.CompareTo(minimum) >= 0) return Result.Ok();
-        string msg = message ?? $"{parameterName} ({input}) is less than {nameof(minimum)} ({minimum})";
-        return Result.Error(new ArgumentException(msg));
+        string msg = message ?? $"Minimum Error: {parameterName} ({input}) is less than {nameof(minimum)} ({minimum})";
+        return Result.Error(msg);
     }
 
     public static Result Minimum<T>(this Result result, T input, T minimum,
@@ -22,8 +22,8 @@ public static partial class GuardClause
         [CallerArgumentExpression("input")] string? parameterName = null, string? message = null) where T : struct, IComparable
     {
         if (input.CompareTo(maximum) <= 0) return Result.Ok();
-        string msg = message ?? $"{parameterName} ({input}) is greater than {nameof(maximum)} ({maximum})";
-        return Result.Error(new ArgumentException(msg));
+        string msg = message ?? $"Maximum Error: {parameterName} ({input}) is greater than {nameof(maximum)} ({maximum})";
+        return Result.Error(msg);
     }
 
     public static Result Maximum<T>(this Result result, T input, T maximum,
