@@ -9,14 +9,14 @@ public static partial class GuardClause
     {
         if (rangeFrom.CompareTo(rangeTo) > 0)
         {
-            string msg = message ?? $"{nameof(rangeFrom)} ({rangeFrom}) should be less than {nameof(rangeTo)} ({rangeTo})";
-            return Result.Error(new ArgumentException(msg));
+            string msg = message ?? $"OutOfRange Error: {nameof(rangeFrom)} ({rangeFrom}) should be less than {nameof(rangeTo)} ({rangeTo})";
+            return Result.Error(msg);
         }
 
         if (input.CompareTo(rangeFrom) < 0 || input.CompareTo(rangeTo) > 0)
         {
-            string msg = message ?? $"{parameterName} ({input}) is out of range of ({rangeFrom}) ({rangeTo})";
-            return Result.Error(new ArgumentException(msg));
+            string msg = message ?? $"OutOfRange Error: {parameterName} ({input}) is out of range of ({rangeFrom}) ({rangeTo})";
+            return Result.Error(msg);
         }
 
         return Result.Ok();

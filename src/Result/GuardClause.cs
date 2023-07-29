@@ -10,10 +10,9 @@ public static partial class GuardClause
     {
         if (input is not null) return Result.Ok();
 
-        Exception ex = new ArgumentNullException(parameterName, message);
-        string msg = message ?? ex.Message;
+        string msg = message ?? $"Null Error: {parameterName}";
 
-        return Result.Error(msg, ex);
+        return Result.Error(msg);
     }
 
     public static Result Null(this Result result, object? input, [CallerArgumentExpression("input")] string? parameterName = null, 
@@ -25,10 +24,9 @@ public static partial class GuardClause
     {
         if (!string.IsNullOrEmpty(input)) return Result.Ok();
 
-        Exception ex = new ArgumentNullException(parameterName, message);
-        string msg = message ?? ex.Message;
+        string msg = message ?? $"NullOrEmpty Error: {parameterName}";
 
-        return Result.Error(msg, ex);
+        return Result.Error(msg);
     }
 
     public static Result NullOrEmpty(this Result result, string? input, [CallerArgumentExpression("input")] string? parameterName = null,
@@ -40,10 +38,9 @@ public static partial class GuardClause
     {
         if (!string.IsNullOrWhiteSpace(input)) return Result.Ok();
 
-        Exception ex = new ArgumentNullException(parameterName, message);
-        string msg = message ?? ex.Message;
+        string msg = message ?? $"NullOrWhiteSpace Error: {parameterName}"; ;
 
-        return Result.Error(msg, ex);
+        return Result.Error(msg);
     }
 
     public static Result NullOrWhiteSpace(this Result result, string? input, 

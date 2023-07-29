@@ -9,10 +9,9 @@ public static partial class GuardClause
     {
         if (input.CompareTo(default(T)) >= 0) return Result.Ok();
 
-        string msg = message ?? "Value can not be negative";
-        Exception ex = new ArgumentException(msg, parameterName);
+        string msg = message ?? $"Negative Error: {parameterName} ({input}) is negative";
 
-        return Result.Error(msg, ex);
+        return Result.Error(msg);
     }
 
     public static Result Negative<T>(this Result result, T input, [CallerArgumentExpression("input")] string? parameterName = null,
@@ -24,7 +23,7 @@ public static partial class GuardClause
     {
         if (input.CompareTo(default(T)) > 0) return Result.Ok();
 
-        string msg = message ?? "Value is not positive";
+        string msg = message ?? $"NegativeOrZero Error: {parameterName} ({input}) is not positive";
         Exception ex = new ArgumentException(msg, parameterName);
 
         return Result.Error(msg, ex);
