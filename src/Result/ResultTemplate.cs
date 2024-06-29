@@ -18,7 +18,7 @@ public readonly partial record struct Result<T>
             Exception = result.Exception 
         };
 
-    public static Result<T> Ok(T t) => new() { Success = true, Value = t };
+    public static Result<T> Ok(T value) => new() { Success = value is not null, Value = value };
     public static Result<T> Error(string errorMessage, Exception? ex = default) => new()
         { 
             Success = false,
