@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
     <Version>0.3.0</Version>
     <AssemblyName>ErogodicMage.Result</AssemblyName>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -17,6 +17,7 @@
     <RepositoryUrl>https://github.com/ErgodicMage/Result</RepositoryUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageIcon>ErgodicMage.jpg</PackageIcon>
+    <PackageReadmeFile>NuGetREADME.md</PackageReadmeFile>
 
     <!--<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>-->
     <DebugType>embedded</DebugType>
@@ -26,6 +27,7 @@
 
   <ItemGroup>
     <None Include="ErgodicMage.jpg" Pack="true" PackagePath="" />
+    <None Include="NuGetREADME.md" Pack="true" PackagePath="" />
   </ItemGroup>
 
   <ItemGroup>

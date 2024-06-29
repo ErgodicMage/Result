@@ -283,4 +283,33 @@ public class ResultTryTests
         Assert.IsType<TaskCanceledException>(result.Exception);
         Assert.Equal("A task was canceled.", result.ErrorMessage);
     }
+
+
+    private readonly record struct Workflow(string Name, int Jobs);
+
+    public async Task<Result<string>> DoWorkflow(string? workflow, CancellationToken token = default)
+    {
+        Result result = GuardClause.NullOrWhiteSpace(workflow);
+        if (!result.Success) return result;
+        
+        Result<Workflow> resultWorkflow = await GetWorkflow(workflow!, token);
+        if (!resultWorkflow.Success) return Result.Error($"Workflow {workflow} not found");
+        
+        return await Result<string>.TryAsync(async (Workflow workflow, CancellationToken token) =>
+        {
+            return await DoWork(workflow, token);
+        },
+        resultWorkflow.Value, token);
+    }
+
+    private static async Task<Result<Workflow>> GetWorkflow(string workflow, CancellationToken? token = default)
+        => new Workflow(workflow, 1);
+
+    private static async Task<Result<string>> DoWork(Workflow workflow, CancellationToken? token = default)
+    {
+        Result result = GuardClause.Null(workflow);
+        if (!result.Success) return result;
+        await Task.Delay(1000);
+        return workflow.Name;
+    }
 }
