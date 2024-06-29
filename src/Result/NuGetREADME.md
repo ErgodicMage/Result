@@ -1,5 +1,5 @@
 # ErgodicMage Result
-A simple implementations of the Result Pattern, Guard Clauses and using Result to reduce exceptions.
+This package contains a simple implementations of the Result Pattern, Guard Clauses and using Result to reduce exceptions.
 
 ## Result Types
 ```
@@ -44,4 +44,3 @@ public static Result Maximum<T>(this Result result, T input, T maximum, string? 
 ```
 
 ## Result exception handlers
-
