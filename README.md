@@ -9,6 +9,8 @@ public readonly record struct Result<T> (bool Success, string ErrorMessage, Exce
 
 ### Example
 ```
+private readonly record struct Workflow(string Name, int Jobs);
+
 public async Task<Result<string>> DoWorkflow(string? workflow, CancellationToken token = default)
 {
     Result result = GuardClause.NullOrWhiteSpace(workflow);
@@ -22,6 +24,17 @@ public async Task<Result<string>> DoWorkflow(string? workflow, CancellationToken
         return await DoWork(workflow, token);
     },
     resultWorkflow.Value, token);
+}
+
+private static async Task<Result<Workflow>> GetWorkflow(string workflow, CancellationToken? token = default)
+    => new Workflow(workflow, 1);
+
+private static async Task<Result<string>> DoWork(Workflow workflow, CancellationToken? token = default)
+{
+    Result result = GuardClause.Null(workflow);
+    if (!result.Success) return result;
+    await Task.Delay(1000);
+    return workflow.Name;
 }
 ```
 
