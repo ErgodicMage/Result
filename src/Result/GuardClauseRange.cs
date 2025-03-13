@@ -30,7 +30,7 @@ public static partial class GuardClause
 
     public static Result OutOfRange(int input, int rangeFrom, int rangeTo,
     [CallerArgumentExpression(nameof(input))] string? parameterName = null, string? message = null)
-    => OutOfRange<int>(input, rangeFrom, rangeTo, parameterName, message);
+        => OutOfRange<int>(input, rangeFrom, rangeTo, parameterName, message);
 
     public static Result OutOfRange(this Result result, int input, int rangeFrom, int rangeTo,
         [CallerArgumentExpression(nameof(input))] string? parameterName = null, string? message = null)
@@ -38,31 +38,31 @@ public static partial class GuardClause
 
     public static Result OutOfRange(long input, long rangeFrom, long rangeTo,
     [CallerArgumentExpression(nameof(input))] string? parameterName = null, string? message = null)
-    => OutOfRange<long>(input, rangeFrom, rangeTo, parameterName, message);
+        => OutOfRange<long>(input, rangeFrom, rangeTo, parameterName, message);
 
     public static Result OutOfRange(this Result result, long input, long rangeFrom, long rangeTo,
         [CallerArgumentExpression(nameof(input))] string? parameterName = null, string? message = null)
         => result.Success ? OutOfRange<long>(result, input, rangeFrom, rangeTo, parameterName, message) : result;
 
     public static Result OutOfRange(float input, float rangeFrom, float rangeTo,
-    [CallerArgumentExpression(nameof(input))] string? parameterName = null, string? message = null)
-    => OutOfRange<float>(input, rangeFrom, rangeTo, parameterName, message);
+        [CallerArgumentExpression(nameof(input))] string? parameterName = null, string? message = null)
+        => OutOfRange<float>(input, rangeFrom, rangeTo, parameterName, message);
 
     public static Result OutOfRange(this Result result, float input, float rangeFrom, float rangeTo,
         [CallerArgumentExpression(nameof(input))] string? parameterName = null, string? message = null)
         => result.Success ? OutOfRange<float>(result, input, rangeFrom, rangeTo, parameterName, message) : result;
 
     public static Result OutOfRange(double input, double rangeFrom, double rangeTo,
-    [CallerArgumentExpression(nameof(input))] string? parameterName = null, string? message = null)
-    => OutOfRange<double>(input, rangeFrom, rangeTo, parameterName, message);
+        [CallerArgumentExpression(nameof(input))] string? parameterName = null, string? message = null)
+     => OutOfRange<double>(input, rangeFrom, rangeTo, parameterName, message);
 
-    public static Result OutOfRange(this Result result, double input,   double rangeFrom, double rangeTo,
+    public static Result OutOfRange(this Result result, double input, double rangeFrom, double rangeTo,
         [CallerArgumentExpression(nameof(input))] string? parameterName = null, string? message = null)
         => result.Success ? OutOfRange<double>(result, input, rangeFrom, rangeTo, parameterName, message) : result;
 
     public static Result OutOfRange(decimal input, decimal rangeFrom, decimal rangeTo,
-    [CallerArgumentExpression(nameof(input))] string? parameterName = null, string? message = null)
-    => OutOfRange<decimal>(input, rangeFrom, rangeTo, parameterName, message);
+        [CallerArgumentExpression(nameof(input))] string? parameterName = null, string? message = null)
+        => OutOfRange<decimal>(input, rangeFrom, rangeTo, parameterName, message);
 
     public static Result OutOfRange(this Result result, decimal input, decimal rangeFrom, decimal rangeTo,
         [CallerArgumentExpression(nameof(input))] string? parameterName = null, string? message = null)
