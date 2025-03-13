@@ -4,9 +4,8 @@ namespace UnitTests;
 
 public class ResultTests
 {
-    string goodString = "Good string";
-    string errorString = "Error string";
-    string? nullString = default;
+    readonly string goodString = "Good string";
+    readonly string errorString = "Error string";
 
     [Fact]
     public void ResultFromValue()

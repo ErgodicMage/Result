@@ -180,7 +180,6 @@ public class ResultTryTests
         {
             _ = $"{i} {msg}";
             throw new Exception("FuncP1P2 throwing Exception");
-            return Result.Error(msg);
         },
             1, "Hi");
 
@@ -302,8 +301,10 @@ public class ResultTryTests
         resultWorkflow.Value, token);
     }
 
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
     private static async Task<Result<Workflow>> GetWorkflow(string workflow, CancellationToken? token = default)
         => new Workflow(workflow, 1);
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
 
     private static async Task<Result<string>> DoWork(Workflow workflow, CancellationToken? token = default)
     {
